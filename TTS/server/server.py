@@ -100,6 +100,14 @@ if args.vocoder_path is not None:
     vocoder_path = args.vocoder_path
     vocoder_config_path = args.vocoder_config_path
 
+
+if config_path is None:
+    print("looking for config in: ", model_path)
+    model_config_path = os.path.join(model_path, "config.json")
+    print("model_config_path:", model_config_path)
+    if os.path.exists(model_config_path):
+         config_path = model_config_path
+
 # load models
 synthesizer = Synthesizer(
     tts_checkpoint=model_path,
